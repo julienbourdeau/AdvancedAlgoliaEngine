@@ -1,0 +1,37 @@
+{
+  "name": "julienbourdeau/laravel-scout-advanced-algolia-driver",
+  "description": "Advanced Algolia driver for Laravel Scout",
+  "keywords": ["algolia", "search", "laravel", "scout"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Algolia Team",
+      "email": "contact@algolia.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.6.4",
+    "laravel/scout": "*",
+    "algolia/algoliasearch-client-php": "1.17.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Algolia\\AdvancedScout\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0-dev"
+    }
+  },
+  "suggest": {
+    "algolia/algoliasearch-client-php": "Algolia PHP client is required."
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
