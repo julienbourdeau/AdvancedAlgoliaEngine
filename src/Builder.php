@@ -7,6 +7,8 @@ use Laravel\Scout\Builder as ScoutBuilder;
 
 class Builder extends ScoutBuilder
 {
+    private $options = [];
+
     /**
      * Return the raw result from the engine.
      *
@@ -15,5 +17,34 @@ class Builder extends ScoutBuilder
     public function raw()
     {
         return $this->engine()->search($this);
+    }
+
+    public function addOptions($options)
+    {
+        $this->options = array_merge($this->options, $options);
+        $this->mergeOptionsCallback();
+
+        return $this;
+    }
+
+    private function mergeOptionsCallback()
+    {
+        $newOptions = $this->options;
+        $callback = $this->callback;
+
+        $this->callback = function ($algolia, $query, $options) use ($newOptions, $callback) {
+            $options = array_merge($options, $newOptions);
+
+            if ($callback) {
+                return call_user_func(
+                    $callback,
+                    $algolia,
+                    $query,
+                    $options
+                );
+            }
+
+            return $algolia->search($query, $options);
+        };
     }
 }
