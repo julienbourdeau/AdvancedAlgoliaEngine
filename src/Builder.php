@@ -19,6 +19,16 @@ class Builder extends ScoutBuilder
         return $this->engine()->search($this);
     }
 
+    public function around($lat, $lng, $radius = 1000)
+    {
+        $location = [
+            'aroundLatLng' => $lat.','.$lng,
+            'aroundRadius' => $radius
+        ];
+
+        return $this->addOptions($location);
+    }
+
     public function addOptions($options)
     {
         $this->options = array_merge($this->options, $options);
