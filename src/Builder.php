@@ -10,6 +10,16 @@ class Builder extends ScoutBuilder
     private $options = [];
 
     /**
+     * Retrieve the number of matching results.
+     *
+     * @return int Number of results
+     */
+    public function count()
+    {
+        return (int) $this->engine()->count($this);
+    }
+
+    /**
      * Return the raw result from the engine.
      *
      * @return mixed
